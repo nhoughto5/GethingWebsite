@@ -3,8 +3,13 @@ import styled, { keyframes } from "styled-components";
 import { Image } from "react-bootstrap";
 import gething from "../images/gething2.jpg"
 import { createGlobalStyle } from 'styled-components'
-import ReactAudioPlayer from 'react-audio-player';
-import audio from "../audio/cavemansound.mp3"
+import audio from "../audio/cavemansound.mp3";
+import {bounce, flip, fadeIn, pulse} from 'react-animations';
+
+const flipAnimation = keyframes`${flip}`;
+const bounceAnimation = keyframes`${bounce}`;
+const fadeInAnim = keyframes`${fadeIn}`;
+const slideupAnim = keyframes`${pulse}`;
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -38,7 +43,7 @@ const RainbowBorderContainer = styled.div`
 `
 
 
-const breatheAnimation = keyframes`
+const flipAnim = keyframes`
 0% {
   -webkit-transform: rotateX(-180deg);
           transform: rotateX(-180deg);
@@ -47,6 +52,11 @@ const breatheAnimation = keyframes`
   -webkit-transform: rotateX(0);
           transform: rotateX(0);
 }
+`
+
+const TextWrap = styled.div`
+  animation: 3s ${slideupAnim};
+  animation-iteration-count: infinite;
 `
 
 const ContentWrapper = styled.div`
@@ -62,6 +72,8 @@ overflow: scroll;
 box-sizing: border-box;
 -ms-overflow-style: none;  /* Internet Explorer 10+ */
 scrollbar-width: none;  /* Firefox */
+animation: 3s ${fadeInAnim};
+
 &::-webkit-scrollbar { 
   display: none;  /* Safari and Chrome */
 }
@@ -74,8 +86,11 @@ img {
   border-width: 5px;
   border-radius: 50%;
   border-color: black;
-  animation-name: ${breatheAnimation};
-  animation-duration: 2s;
+  animation-name: ${flipAnimation}, ${bounceAnimation};
+  animation-duration: 2s, 1s;
+  animation-delay: 0ms, 5s;
+  animation-timing-function: ease-in, ease-out;
+  animation-iteration-count: 1, 1;
 }
 h3 {
   text-decoration: underline;
@@ -92,32 +107,23 @@ h3 {
 }
 `;
 
-// const breatheAnimation = keyframes`
-//   0% {
-//     -webkit-transform: rotateX(0);
-//             transform: rotateX(0);
-//   }
-//   100% {
-//     -webkit-transform: rotateX(-180deg);
-//             transform: rotateX(-180deg);
-//   }
-//  `
-
 const IndexPage = () => {
+  const start = () => {
+    new Audio(audio).play();
+  }
+
   return (
     <>
     <GlobalStyle />
     <main>
       <RainbowBorderContainer>
       <ContentWrapper>
-          <Image src={gething}></Image>
-          <h1>He's the oogie boogie man</h1>
-          <h3>Feed me all your pencils</h3>
-          <ReactAudioPlayer
-            src={audio}
-            autoPlay
-            // controls
-          />
+          <Image src={gething} onClick={start}></Image>
+          <TextWrap>
+            <h1>He's the Ogo-Bogo man</h1>
+            <h3>Feed me all your pencils</h3>
+            <p>Press his silly face</p>
+          </TextWrap>
       </ContentWrapper>
       </RainbowBorderContainer>
     </main>
@@ -127,4 +133,4 @@ const IndexPage = () => {
 
 export default IndexPage
 
-export const Head = () => <title>Nic The Ogo Bog Man</title>
+export const Head = () => <title>Nic The Ogo-Bogo Man</title>

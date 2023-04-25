@@ -12,7 +12,8 @@
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
-    "clean": "gatsby clean"
+    "clean": "gatsby clean",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public"
   },
   "dependencies": {
     "@mdx-js/react": "^2.3.0",
@@ -20,18 +21,18 @@
     "gatsby": "^5.9.0",
     "gatsby-plugin-image": "^3.9.0",
     "gatsby-plugin-layout": "^4.9.0",
+    "gatsby-plugin-manifest": "^5.9.0",
     "gatsby-plugin-mdx": "^5.9.0",
     "gatsby-plugin-sharp": "^5.9.0",
     "gatsby-plugin-styled-components": "^6.9.0",
     "gatsby-source-filesystem": "^5.9.0",
     "gatsby-transformer-sharp": "^5.9.0",
     "react": "^18.2.0",
+    "react-animations": "^1.0.0",
+    "react-audio-player": "^0.17.0",
+    "react-bootstrap": "^2.7.4",
     "react-dom": "^18.2.0",
     "react-spring": "^9.7.1",
     "styled-components": "^5.3.10"
-  },
-  "devDependencies": {
-    "react-audio-player": "^0.17.0",
-    "react-bootstrap": "^2.7.4"
   }
 }
